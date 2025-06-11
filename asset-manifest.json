@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/vJBasarkod/Customer-App.git/static/css/main.1c9b3e01.css",
+    "main.js": "/vJBasarkod/Customer-App.git/static/js/main.2d180c62.js",
+    "index.html": "/vJBasarkod/Customer-App.git/index.html",
+    "main.1c9b3e01.css.map": "/vJBasarkod/Customer-App.git/static/css/main.1c9b3e01.css.map",
+    "main.2d180c62.js.map": "/vJBasarkod/Customer-App.git/static/js/main.2d180c62.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c9b3e01.css",
+    "static/js/main.2d180c62.js"
+  ]
+}
