@@ -8,7 +8,7 @@ const CustomerList = ({ customers, onSelect, selectedCustomer }) => {
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th>Email ID</th>
                         <th>Pass</th>
                     </tr>
                 </thead>
