@@ -3,7 +3,7 @@ import '../App.css';
 const CustomerList = ({ customers, onSelect, selectedCustomer }) => {
     return (
         <div className="boxed">
-            <h2>Customer List</h2>
+            <h2>Customers List</h2>
             <table className="customer-table">
                 <thead>
                     <tr>
