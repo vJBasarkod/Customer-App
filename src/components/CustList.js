@@ -1,8 +1,8 @@
 import React from 'react';
-
+import '../App.css';
 const CustomerList = ({ customers, onSelect, selectedCustomer }) => {
     return (
-        <div className="customer-list-section">
+        <div className="boxed">
             <h2>Customer List</h2>
             <table className="customer-table">
                 <thead>

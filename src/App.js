@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { getAll, post, put, deleteById } from './memdb.js'
+import CustomerForm from './components/CustForm.js';
+import CustomerList from './components/CustList.js';
 import './App.css';
 
 function log(message){console.log(message);}
@@ -54,6 +56,32 @@ export function App(params) {
   }
 
   return (
+        <div className="app">
+            <h1>Customer Management</h1>
+            <div className="container">
+                <CustomerList 
+                    customers={customers} 
+                    onSelect={handleSelectCustomer} 
+                    selectedCustomer={selectedCustomer} 
+                />
+                <CustomerForm 
+                    selectedCustomer={selectedCustomer} 
+                    onSave={(customer) => {
+                        if (selectedCustomer) {
+                            handleUpdateCustomer({...selectedCustomer, ...customer});
+                        } else {
+                            handleAddCustomer(customer);
+                        }
+                    }}
+                    onDelete={handleDeleteCustomer} 
+                    onCancel={handleCancel} 
+                />
+            </div>
+        </div>
+    );
+    
+
+  /*return (
     <div>
       <div className="boxed" >
         <h4>Customer List</h4>
@@ -128,7 +156,7 @@ export function App(params) {
       </form>
     </div>
     </div>
-  );
+  );*/
 }
 
 export default App;
