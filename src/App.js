@@ -15,9 +15,18 @@ export function App(params) {
   let mode = (formObject.id >= 0) ? 'Update' : 'Add';
   useEffect(() => { getCustomers() }, []);
   
-  const getCustomers =  function(){
+  const getCustomers = async function(){
     log("in getCustomers()");
-    setCustomers(getAll());
+    //setCustomers(getAll());
+    try 
+    {
+      const data = await getAll();
+      setCustomers(data);
+    } 
+    catch (error) 
+    {
+      console.error('Failed to fetch customers:', error);
+    }
   }
   const handleListClick = function(item){
     log("in handleListClick()");
