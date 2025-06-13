@@ -21,8 +21,7 @@ export function CustomerList({ customers, selectedId, onCustomerSelect }) {
                 onClick={() => onCustomerSelect(item)}
               >
                 <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.password}</td>
+                <td>{item.email}</td>        
                 <td>{'*'.repeat(item.password.length)}</td>
               </tr>
             );
