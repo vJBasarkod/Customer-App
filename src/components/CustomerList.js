@@ -23,6 +23,7 @@ export function CustomerList({ customers, selectedId, onCustomerSelect }) {
                 <td>{item.name}</td>
                 <td>{item.email}</td>
                 <td>{item.password}</td>
+                <td>{'*'.repeat(item.password.length)}</td>
               </tr>
             );
           })}
