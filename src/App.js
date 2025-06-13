@@ -40,6 +40,7 @@ export function App(params) {
     let newFormObject = {...formObject}
     newFormObject[name] = value;
     setFormObject(newFormObject);
+    log(event);
   }
 
   let onCancelClick = function () {
