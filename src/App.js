@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAll, post, put, deleteById } from './memdb.js'
+//import { getAll, post, put, deleteById } from './memdb.js'
+import { getAll, post, put, deleteById } from './restdb.js'
 import './App.css';
 import CustomerList from './components/CustomerList';
 import CustomerAddUpdateForm from './components/CustomerAddUpdateForm';
