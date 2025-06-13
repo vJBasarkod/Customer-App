@@ -14,21 +14,17 @@ export function App(params) {
   const [formObject, setFormObject] = useState(blankCustomer);
   let mode = (formObject.id >= 0) ? 'Update' : 'Add';
   useEffect(() => { getCustomers() }, []);
-  
-  const getCustomers = async function(){
+    const getCustomers = async function() {
     log("in getCustomers()");
-    //setCustomers(getAll());
-    try 
-    {
+    try {
       const data = await getAll();
       setCustomers(data);
-    } 
-    catch (error) 
-    {
+    } catch (error) {
       console.error('Failed to fetch customers:', error);
     }
   }
-  const handleListClick = function(item){
+
+  const handleListClick = function(item) {
     log("in handleListClick()");
     if (item.id === formObject.id) {
       setFormObject(blankCustomer);
@@ -51,23 +47,49 @@ export function App(params) {
     setFormObject(blankCustomer);
   }
 
-  let onDeleteClick = function () {
+  let onDeleteClick = async function () {
     log("in onDeleteClick()");
     if(formObject.id >= 0){
-      deleteById(formObject.id);
-    } 
-    setFormObject(blankCustomer);
-  }
-
-  let onSaveClick = function () {
+      try {
+        await deleteById(formObject.id);
+        await getCustomers(); // Refresh the list after deletion
+        setFormObject(blankCustomer);
+      } catch (error) {
+        console.error('Failed to delete customer:', error);
+      }    }
+  }  
+  let onSaveClick = async function () {
     log("in onSaveClick()");
-    if (mode === 'Add') {
-      post(formObject);
+    // Validate that required fields are not empty
+    if (!formObject.name.trim() || !formObject.email.trim() || !formObject.password.trim()) {
+      alert('Please fill in all fields before saving');
+      return;
     }
-    if (mode === 'Update') {
-      put(formObject.id, formObject);
+
+    // Check for duplicate email
+    const duplicateCustomer = customers.find(
+      customer => customer.email === formObject.email.trim() && customer.id !== formObject.id
+    );
+    
+    if (duplicateCustomer) {
+      alert('A customer with this email already exists');
+      return;
     }
-    setFormObject(blankCustomer);
+
+    try {
+      if (mode === 'Add') {
+        // Create a new object without the id field for new customers
+        const { id, ...customerWithoutId } = formObject;
+        await post(customerWithoutId);
+      }
+      if (mode === 'Update') {
+        await put(formObject.id, formObject);
+      }
+      await getCustomers(); // Refresh the list after save
+      setFormObject(blankCustomer);
+    } catch (error) {
+      console.error('Failed to save customer:', error);
+    }
   }
   return (
     <div>
